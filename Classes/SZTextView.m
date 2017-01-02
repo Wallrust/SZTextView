@@ -255,6 +255,13 @@ static NSString * const kTextAlignmentKey = @"textAlignment";
     }
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+  [super touchesBegan:touches withEvent:event];
+  if ([self.tapDelegate respondsToSelector:@selector(textView:touchesBegan:withEvent:)]) {
+    [self.tapDelegate textView:self touchesBegan:touches withEvent:event];
+  }
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
